@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import HomeContent from "./components/homeContent/HomeContent";
+import { useEffect, useState } from "react";
 
-function App() {
+export default function App() {
+  const [ipData, setIpData] = useState<any>({});
+
+  useEffect(() => {
+    function getIp() {
+      fetch("https://ipapi.co/json/")
+        .then((response) => response.json())
+        .then((data) => setIpData(data));
+    }
+    getIp();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HomeContent ipData={ipData} />
     </div>
   );
 }
-
-export default App;
