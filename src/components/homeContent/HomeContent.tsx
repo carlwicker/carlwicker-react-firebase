@@ -1,5 +1,7 @@
 import { VscGithub } from "react-icons/vsc";
+import { BsLinkedin } from "react-icons/bs";
 import css from "./HomeContent.module.css";
+import { useEffect } from "react";
 
 interface Iip {
   ipData: any;
@@ -9,16 +11,21 @@ export default function homeContent({ ipData }: Iip) {
   return (
     <div className={css.container}>
       <div>
-        <h1 style={{ fontWeight: "500" }}>Carl Wicker</h1>
-        <h2 style={{ fontWeight: "300" }}>Front End Web Developer</h2>
+        <h1>Carl Wicker</h1>
+        <h2>Front End Web Developer</h2>
         <p>Hello...</p>
         <b className={css.ip}>{ipData.ip}</b>
         <p>
           {ipData.city}, {ipData.country_name}.
         </p>
-        <a href="https://github.com/carlwicker">
-          <VscGithub />
-        </a>
+        <div className={css["social-group"]}>
+          <a href="https://github.com/carlwicker">
+            <VscGithub />
+          </a>
+          <a href="https://github.com/carlwicker">
+            <BsLinkedin />
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ export default function BackgroundMap({ ipData }: IipData) {
     setInitalView({
       latitude: ipData?.latitude,
       longitude: ipData?.longitude,
-      zoom: 8,
+      zoom: 7,
       bearing: 0,
       pitch: 0,
     });

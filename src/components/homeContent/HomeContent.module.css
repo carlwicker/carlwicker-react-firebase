@@ -7,18 +7,15 @@ h2 {
 }
 
 a {
-  position: absolute;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   transition: color 1s;
   font-size: 2.5em;
-  padding-top: 20px;
 }
 
 a:hover {
   color: olive;
   cursor: pointer;
-  animation: infinite;
   transition: color 1s;
 }
 
@@ -31,4 +28,11 @@ a:hover {
   top: 0;
   align-items: center;
   justify-content: center;
+  padding: 30px;
+}
+
+.social-group {
+  display: flex;
+  margin-top: 15px;
+  gap: 15px;
 }
