@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import Map, { FullscreenControl } from "react-map-gl";
+
+import "mapbox-gl/dist/mapbox-gl.css";
+import Map from "react-map-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
 interface IipData {
   ipData: any;
@@ -14,7 +16,6 @@ export default function BackgroundMap({ ipData }: IipData) {
       longitude: ipData?.longitude,
       zoom: 8,
       bearing: 0,
-      light: "Light",
       pitch: 0,
     });
   }, [ipData]);

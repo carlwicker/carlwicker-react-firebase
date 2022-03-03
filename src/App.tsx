@@ -1,8 +1,7 @@
 import "./App.css";
-import "mapbox-gl/dist/mapbox-gl.css";
-import HomeContent from "./components/homeContent/HomeContent";
 import { useEffect, useState } from "react";
 import BackgroundMap from "./components/backgroundMap/BackgroundMap";
+import HomeContent from "./components/homeContent/HomeContent";
 
 export default function App() {
   const [ipData, setIpData] = useState<any>({});
@@ -19,7 +18,6 @@ export default function App() {
   return (
     <>
       <BackgroundMap ipData={ipData} />
-
       <HomeContent ipData={ipData} />
     </>
   );
