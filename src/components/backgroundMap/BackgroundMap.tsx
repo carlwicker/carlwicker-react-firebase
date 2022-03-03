@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import css from "./BackgroundMap.module.css";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import Map from "react-map-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import Map from "react-map-gl";
 
 interface IipData {
   ipData: any;
@@ -22,6 +23,7 @@ export default function BackgroundMap({ ipData }: IipData) {
 
   return (
     <div
+      className={css.map}
       style={{
         width: "100vw",
         height: "100vh",
