@@ -22,7 +22,7 @@ export default function homeContent({ ipData }: Iip) {
           <a href="https://github.com/carlwicker">
             <VscGithub />
           </a>
-          <a href="https://github.com/carlwicker">
+          <a href="https://www.linkedin.com/in/carl-wicker-55968611">
             <BsLinkedin />
           </a>
         </div>
