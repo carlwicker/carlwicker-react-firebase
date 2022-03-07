@@ -19,10 +19,13 @@ export default function homeContent({ ipData }: Iip) {
           {ipData.city}, {ipData.country_name}.
         </p>
         <div className={css["social-group"]}>
-          <a href="https://github.com/carlwicker">
+          <a href="https://github.com/carlwicker" target="_blank">
             <VscGithub />
           </a>
-          <a href="https://www.linkedin.com/in/carl-wicker-55968611">
+          <a
+            href="https://www.linkedin.com/in/carl-wicker-55968611"
+            target="_blank"
+          >
             <BsLinkedin />
           </a>
         </div>
