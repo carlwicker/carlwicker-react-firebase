@@ -6,9 +6,10 @@ import Map from "react-map-gl";
 
 interface IipData {
   ipData: any;
+  pos: any;
 }
 
-export default function BackgroundMap({ ipData }: IipData) {
+export default function BackgroundMap({ ipData, pos }: IipData) {
   const [initialView, setInitalView] = useState<any>({});
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function BackgroundMap({ ipData }: IipData) {
   return (
     <div
       className={css.map}
+      // This must stay inline styling.
       style={{
         width: "100vw",
         height: "100vh",
@@ -34,11 +36,31 @@ export default function BackgroundMap({ ipData }: IipData) {
     >
       {initialView.longitude !== undefined &&
       initialView.latitude !== undefined ? (
-        <Map
-          initialViewState={initialView}
-          mapStyle="mapbox://styles/carlwicker/cl0avqnae003c15t85otw6ofe"
-          mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        />
+        <>
+          <Map
+            initialViewState={initialView}
+            mapStyle="mapbox://styles/carlwicker/cl0avqnae003c15t85otw6ofe"
+            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+          />
+          <div
+            style={{
+              display: "flex",
+              position: "absolute",
+              height: "100vh",
+              top: "0",
+              width: "100vw",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "100vw",
+              fontWeight: "800",
+              opacity: "0.05",
+              overflow: "hidden",
+            }}
+          >
+            {pos.x}
+            {pos.y}
+          </div>
+        </>
       ) : (
         ""
       )}

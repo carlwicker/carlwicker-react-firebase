@@ -19,6 +19,7 @@ body {
   height: 100vh;
 }
 
+/* This hides the background map branding and details - only works here, not in map component */
 .mapboxgl-ctrl-bottom-left,
 .mapboxgl-ctrl-bottom-right {
   opacity: 0;
