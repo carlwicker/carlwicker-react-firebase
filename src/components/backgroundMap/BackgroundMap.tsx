@@ -51,10 +51,12 @@ export default function BackgroundMap({ ipData, pos }: IipData) {
               width: "100vw",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "100vw",
+              fontSize: "200vh",
               fontWeight: "800",
               opacity: "0.05",
               overflow: "hidden",
+              // filter: "drop-shadow(20px 20px 5px rgb(0 0 0 / 0.5))",
+              backgroundBlendMode: "darken",
             }}
           >
             {pos.x}
