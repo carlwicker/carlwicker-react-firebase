@@ -116,6 +116,7 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
               opacity: "0.75",
               overflow: "hidden",
               color: "black",
+              letterSpacing: "-100px",
             }}
           >
             {pos.x}
