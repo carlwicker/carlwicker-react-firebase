@@ -55,8 +55,6 @@ export default function BackgroundMap({ ipData, pos }: IipData) {
               fontWeight: "800",
               opacity: "0.05",
               overflow: "hidden",
-              // filter: "drop-shadow(20px 20px 5px rgb(0 0 0 / 0.5))",
-              backgroundBlendMode: "darken",
             }}
           >
             {pos.x}
