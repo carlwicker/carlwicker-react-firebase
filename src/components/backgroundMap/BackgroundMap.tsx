@@ -37,17 +37,20 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
             style={{
               color: "red",
               fontSize: "30px",
-              fontWeight: "800",
               transform: "rotateZ(" + f?.heading + "deg)",
               opacity: "1",
             }}
           >
-            <MdAirplanemodeActive />
+            <div style={{ textShadow: "10px 10px 5px green" }}>
+              <MdAirplanemodeActive />
+            </div>
+
             <div
               style={{
-                color: "grey",
-                fontSize: "30px",
-                padding: "0",
+                color: "black",
+                fontSize: "1000px",
+                opacity: "0.75",
+                fontWeight: "800",
               }}
             >
               {f?.callsign}
@@ -110,8 +113,9 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
               justifyContent: "center",
               fontSize: "200vh",
               fontWeight: "800",
-              opacity: "0.05",
+              opacity: "0.75",
               overflow: "hidden",
+              color: "black",
             }}
           >
             {pos.x}

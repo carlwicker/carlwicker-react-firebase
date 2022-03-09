@@ -24,7 +24,6 @@ export default function App() {
   }, []);
 
   // Get Flights
-
   useEffect(() => {
     async function getFlights() {
       const apiData = await fetch(
@@ -44,13 +43,8 @@ export default function App() {
         });
     }
     getFlights();
-    let test = flights.flightPositions;
-    // console.log(test);
+    console.log(flights);
   }, [ipData]);
-
-  useEffect(() => {
-    // console.log(flights.flightPositions);
-  }, [flights]);
 
   return (
     <div
