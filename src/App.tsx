@@ -6,7 +6,7 @@ import HomeContent from "./components/homeContent/HomeContent";
 export default function App() {
   const [ipData, setIpData] = useState<any>({});
   const [pos, setPos] = useState<any>({ x: 0, y: 0 });
-  const [flights, setFlights] = useState<any>({});
+  const [flights, setFlights] = useState<any>([]);
 
   // Mouse Cords
   function getPosition(e: any) {
@@ -27,10 +27,6 @@ export default function App() {
 
   useEffect(() => {
     async function getFlights() {
-      let apiTest =
-        "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flightsNear/50.8/0.13/100?appId=1da39546&appKey=8ae7e8a3b86817946500dfb847c95b80&maxFlights=25";
-      // let data = await // apiTest
-
       const apiData = await fetch(
         "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flightsNear/" +
           ipData.latitude +
@@ -43,13 +39,17 @@ export default function App() {
           "&maxFlights=5"
       )
         .then((response) => response.json())
-        .then((data) => setFlights(data));
+        .then((data) => {
+          setFlights(data);
+        });
     }
     getFlights();
+    let test = flights.flightPositions;
+    // console.log(test);
   }, [ipData]);
 
   useEffect(() => {
-    console.log(flights);
+    // console.log(flights.flightPositions);
   }, [flights]);
 
   return (
@@ -66,7 +66,11 @@ export default function App() {
         getPosition(e);
       }}
     >
-      <BackgroundMap ipData={ipData} pos={pos} />
+      <BackgroundMap
+        ipData={ipData}
+        pos={pos}
+        flights={flights.flightPositions}
+      />
       <HomeContent ipData={ipData} />
     </div>
   );
