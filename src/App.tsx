@@ -59,8 +59,7 @@ export default function App() {
         {
           method: "GET",
           headers: {
-            "x-rapidapi-key":
-              "eecc89eb49msh713a2cc42be93f4p17df8djsn85ea725ae1fa",
+            "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_WEATHER as string,
             "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
           },
         }
