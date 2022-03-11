@@ -31,7 +31,7 @@ export default function App() {
           ipData.latitude +
           "/" +
           ipData.longitude +
-          "/100?appId=" +
+          "/500?appId=" +
           process.env.REACT_APP_FLIGHTSTATS_APPID +
           "&appKey=" +
           process.env.REACT_APP_FLIGHTSTATS_TOKEN +
@@ -43,8 +43,44 @@ export default function App() {
         });
     }
     getFlights();
-    console.log(flights);
+    // console.log(flights);
   }, [ipData]);
+
+  // Open Sky API
+  const [openSkyData, setOpenSkyData] = useState<any>();
+
+  useEffect(() => {
+    async function openSky() {
+      const apiData = await fetch(
+        "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=" +
+          ipData.latitude +
+          "&lon=" +
+          ipData.longitude,
+        {
+          method: "GET",
+          headers: {
+            "x-rapidapi-key":
+              "eecc89eb49msh713a2cc42be93f4p17df8djsn85ea725ae1fa",
+            "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
+          },
+        }
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    openSky();
+  }, [ipData]);
+
+  useEffect(() => {
+    console.log(openSkyData);
+  }, [openSkyData]);
 
   return (
     <div
@@ -55,6 +91,7 @@ export default function App() {
         padding: "20px",
         alignContent: "center",
         justifyContent: "center",
+        backgroundColor: "black",
       }}
       onMouseMove={(e: any) => {
         getPosition(e);

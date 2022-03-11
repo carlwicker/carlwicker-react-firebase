@@ -1,7 +1,6 @@
 import { VscGithub } from "react-icons/vsc";
 import { BsLinkedin } from "react-icons/bs";
 import css from "./HomeContent.module.css";
-import { useEffect } from "react";
 
 interface Iip {
   ipData: any;

@@ -34,35 +34,17 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
           anchor="bottom"
         >
           <div
+            className={css.heading}
             style={{
-              color: "red",
-              fontSize: "30px",
               transform: "rotateZ(" + f?.heading + "deg)",
-              opacity: "1",
             }}
           >
-            <div style={{ textShadow: "10px 10px 5px green" }}>
+            <div className={css["plane-icon"]}>
               <MdAirplanemodeActive />
             </div>
 
-            <div
-              style={{
-                color: "black",
-                fontSize: "1000px",
-                opacity: "0.75",
-                fontWeight: "800",
-              }}
-            >
-              {f?.callsign}
-            </div>
-            <div
-              style={{
-                color: "white",
-                fontSize: "10px",
-                padding: "0",
-                fontWeight: "100",
-              }}
-            >
+            <div className={css["callsign"]}>{f?.callsign}</div>
+            <div className={css["heading-course"]}>
               HEADING: {f?.heading.toFixed()}
             </div>
           </div>
@@ -81,7 +63,6 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
 
   return (
     <div
-      className={css.map}
       // This must stay inline styling.
       style={{
         width: "100vw",
@@ -102,23 +83,7 @@ export default function BackgroundMap({ ipData, pos, flights }: IipData) {
           >
             {pins}
           </Map>
-          <div
-            style={{
-              display: "flex",
-              position: "absolute",
-              height: "100vh",
-              top: "0",
-              width: "100vw",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "200vh",
-              fontWeight: "800",
-              opacity: "0.75",
-              overflow: "hidden",
-              color: "black",
-              letterSpacing: "-100px",
-            }}
-          >
+          <div className={css.xy}>
             {pos.x}
             {pos.y}
           </div>
