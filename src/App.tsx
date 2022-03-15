@@ -2,11 +2,11 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import BackgroundMap from "./components/backgroundMap/BackgroundMap";
 import HomeContent from "./components/homeContent/HomeContent";
+import OpenWeather from "./components/openWeather/OpenWeather";
 
 export default function App() {
   const [ipData, setIpData] = useState<any>({});
   const [pos, setPos] = useState<any>({ x: 0, y: 0 });
-  const [flights, setFlights] = useState<any>([]);
 
   // Mouse Cords
   function getPosition(e: any) {
@@ -23,63 +23,7 @@ export default function App() {
     getIp();
   }, []);
 
-  // Get Flights
-  useEffect(() => {
-    async function getFlights() {
-      const apiData = await fetch(
-        "https://api.flightstats.com/flex/flightstatus/rest/v2/json/flightsNear/" +
-          ipData.latitude +
-          "/" +
-          ipData.longitude +
-          "/500?appId=" +
-          process.env.REACT_APP_FLIGHTSTATS_APPID +
-          "&appKey=" +
-          process.env.REACT_APP_FLIGHTSTATS_TOKEN +
-          "&maxFlights=5"
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setFlights(data);
-        });
-    }
-    getFlights();
-    // console.log(flights);
-  }, [ipData]);
-
   // Open Sky API
-  const [openSkyData, setOpenSkyData] = useState<any>();
-
-  useEffect(() => {
-    async function openSky() {
-      const apiData = await fetch(
-        "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lat=" +
-          ipData.latitude +
-          "&lon=" +
-          ipData.longitude,
-        {
-          method: "GET",
-          headers: {
-            "x-rapidapi-key": process.env.REACT_APP_RAPIDAPI_WEATHER as string,
-            "x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-          },
-        }
-      )
-        .then((response) => {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-    openSky();
-  }, [ipData]);
-
-  useEffect(() => {
-    console.log(openSkyData);
-  }, [openSkyData]);
 
   return (
     <div
@@ -96,11 +40,8 @@ export default function App() {
         getPosition(e);
       }}
     >
-      <BackgroundMap
-        ipData={ipData}
-        pos={pos}
-        flights={flights.flightPositions}
-      />
+      <OpenWeather ipData={ipData} />
+      <BackgroundMap ipData={ipData} pos={pos} />
       <HomeContent ipData={ipData} />
     </div>
   );
