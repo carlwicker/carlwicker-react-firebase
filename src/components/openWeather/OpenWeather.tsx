@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import css from "./OpenWeather.module.css";
 
 interface IOpenWeather {
   ipData: any;
@@ -34,33 +35,16 @@ export default function OpenWeather({ ipData }: IOpenWeather) {
   return (
     <div>
       {openWeather !== {} ? (
-        <div
-          style={{
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column",
-            fontSize: "20px",
-            color: "white",
-            bottom: "20px",
-            width: "100vw",
-            left: "0",
-            letterSpacing: "0",
-            fontWeight: "100",
-            zIndex: "5",
-            padding: "10px",
-          }}
-        >
+        <div className={css["weather-container"]}>
           <img
             src={`http://openweathermap.org/img/wn/${openWeather?.current?.weather[0]?.icon}.png`}
           />
-
-          <div>
-            Humidity: {openWeather?.current?.humidity}
-            {" - "}
-            {openWeather?.current?.pressure}H/Pa
-            {" - "}
-            {(openWeather?.current?.temp - 273.15).toFixed(1)} Celsius
+          <div className={css["weather-info"]}>
+            <div>Humidity: {openWeather?.current?.humidity}</div>
+            <div>{openWeather?.current?.pressure}H/Pa</div>
+            <div>
+              {(openWeather?.current?.temp - 273.15).toFixed(1)} Celsius
+            </div>
           </div>
         </div>
       ) : (
