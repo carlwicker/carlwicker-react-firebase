@@ -5,7 +5,7 @@ import HomeContent from "./components/homeContent/HomeContent";
 import OpenWeather from "./components/openWeather/OpenWeather";
 
 export default function App() {
-  const [ipData, setIpData] = useState<any>({});
+  const [ipData, setIpData] = useState<any>(undefined);
   const [pos, setPos] = useState<any>({ x: 0, y: 0 });
 
   // Mouse Cords
@@ -23,26 +23,22 @@ export default function App() {
     getIp();
   }, []);
 
-  // Open Sky API
-
   return (
     <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        width: "100vw",
-        padding: "20px",
-        alignContent: "center",
-        justifyContent: "center",
-        backgroundColor: "black",
-      }}
+      className="app"
       onMouseMove={(e: any) => {
         getPosition(e);
       }}
     >
-      <OpenWeather ipData={ipData} />
-      <BackgroundMap ipData={ipData} pos={pos} />
-      <HomeContent ipData={ipData} />
+      {ipData ? (
+        <>
+          <OpenWeather ipData={ipData} />
+          <BackgroundMap ipData={ipData} pos={pos} />
+          <HomeContent ipData={ipData} />
+        </>
+      ) : (
+        "..."
+      )}
     </div>
   );
 }

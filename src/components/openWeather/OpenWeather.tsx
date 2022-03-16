@@ -6,7 +6,7 @@ interface IOpenWeather {
 }
 
 export default function OpenWeather({ ipData }: IOpenWeather) {
-  const [openWeather, setOpenWeather] = useState<any>({});
+  const [openWeather, setOpenWeather] = useState<any>(undefined);
 
   useEffect(() => {
     async function getOpenWeather() {
@@ -15,7 +15,7 @@ export default function OpenWeather({ ipData }: IOpenWeather) {
           ipData.latitude +
           "&lon=" +
           ipData.longitude +
-          "&exclude={part}&appid=" +
+          "&appid=" +
           process.env.REACT_APP_OPEN_WEATHER
       )
         .then((response) => {
@@ -28,27 +28,25 @@ export default function OpenWeather({ ipData }: IOpenWeather) {
           console.error(err);
         });
     }
-
     getOpenWeather();
   }, [ipData]);
 
   return (
     <div>
-      {openWeather !== {} ? (
+      {openWeather ? (
         <div className={css["weather-container"]}>
           <img
             src={`http://openweathermap.org/img/wn/${openWeather?.current?.weather[0]?.icon}.png`}
           />
           <div className={css["weather-info"]}>
-            <div>Humidity: {openWeather?.current?.humidity}</div>
-            <div>{openWeather?.current?.pressure}H/Pa</div>
+            <div>{openWeather?.current?.pressure}HPa</div>
             <div>
               {(openWeather?.current?.temp - 273.15).toFixed(1)} Celsius
             </div>
           </div>
         </div>
       ) : (
-        ""
+        "..."
       )}
     </div>
   );
