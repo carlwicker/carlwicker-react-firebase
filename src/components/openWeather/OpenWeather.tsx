@@ -36,7 +36,7 @@ export default function OpenWeather({ ipData }: IOpenWeather) {
       {openWeather ? (
         <div className={css["weather-container"]}>
           <img
-            src={`http://openweathermap.org/img/wn/${openWeather?.current?.weather[0]?.icon}.png`}
+            src={`https://openweathermap.org/img/wn/${openWeather?.current?.weather[0]?.icon}.png`}
           />
           <div className={css["weather-info"]}>
             <div>{openWeather?.current?.pressure}HPa</div>
